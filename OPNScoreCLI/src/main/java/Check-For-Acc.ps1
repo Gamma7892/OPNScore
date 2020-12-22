@@ -26,7 +26,9 @@ function Get-AccExistence {
 
     # try to find the requested user, if it doesn't exist then the error it caught and variable set.
     try { $Trash = Get-LocalUser $Username -erroraction Stop} # assign the result so it's not returned, and set the error action so it works properly with try / catch.
-    catch { $Exists = $false }
+    catch { 
+        $Exists = $trash #VSC generates a warning when variables are assigned but not used so i added this useless line to get rid of the error
+        $Exists = $false }
 
     return $Exists
 }
